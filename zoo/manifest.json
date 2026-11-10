@@ -1,0 +1,57 @@
+{
+  "description": "Ground truth for the flaky zoo. Each case names one test and the reason it is (or is not) flaky.",
+  "cases": [
+    {
+      "id": "order-victim",
+      "category": "order-dependent-victim",
+      "test": "zoo/order_victim/test_ov_b_victim.py::test_registry_starts_empty",
+      "polluters": ["zoo/order_victim/test_ov_a_polluter.py::test_register_plugin"]
+    },
+    {
+      "id": "order-brittle",
+      "category": "order-dependent-brittle",
+      "test": "zoo/order_brittle/test_ob_b_brittle.py::test_locale_is_canadian",
+      "state_setters": ["zoo/order_brittle/test_ob_a_setter.py::test_configure_defaults"]
+    },
+    {
+      "id": "time-same-second",
+      "category": "time-dependent",
+      "test": "zoo/time_dependent/test_td_same_second.py::test_receipt_is_stamped_this_second"
+    },
+    {
+      "id": "time-timezone",
+      "category": "time-dependent",
+      "test": "zoo/time_dependent/test_td_timezone.py::test_report_hour_matches_utc"
+    },
+    {
+      "id": "random-sample-mean",
+      "category": "randomness",
+      "test": "zoo/randomness/test_rn_sample_mean.py::test_sample_mean_is_near_half"
+    },
+    {
+      "id": "random-hash-order",
+      "category": "randomness",
+      "test": "zoo/randomness/test_rn_hash_order.py::test_first_tag_is_alpha"
+    },
+    {
+      "id": "concurrency-wait-race",
+      "category": "timing-concurrency",
+      "test": "zoo/concurrency/test_cc_wait_race.py::test_background_job_has_finished"
+    },
+    {
+      "id": "network-fetch-status",
+      "category": "network",
+      "test": "zoo/network/test_nw_fetch_status.py::test_status_endpoint_replies_ok"
+    },
+    {
+      "id": "stable-pass",
+      "category": "not-flaky",
+      "test": "zoo/stable/test_st_controls.py::test_always_passes"
+    },
+    {
+      "id": "stable-fail",
+      "category": "not-flaky",
+      "test": "zoo/stable/test_st_controls.py::test_always_fails"
+    }
+  ]
+}
